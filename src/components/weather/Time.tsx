@@ -1,7 +1,10 @@
 // import { PropsWithChildren } from "react";
+import React from "react";
 import styles from "./Time.module.css";
-
-const Time = ({ time }) => {
+interface timeProps {
+  time: string;
+}
+const Time: React.FC<timeProps> = ({ time }) => {
   return <div className={styles.TimeApp}>{time}</div>;
 };
 

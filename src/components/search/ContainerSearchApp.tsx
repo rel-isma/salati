@@ -3,10 +3,20 @@ import SearchApp from "./SearchApp";
 import LastVisit from "./LastVisit";
 import { useRef } from "react";
 
-const ContainerSearchApp = ({ onCityChange }) => {
-  const lastVisitRef = useRef(null);
+interface ContainerSearchAppProps {
+  onCityChange: (city: string) => void;
+}
 
-  const handleCityChange = (city) => {
+interface LastVisitRef {
+  addCity: (city: string) => void;
+}
+
+const ContainerSearchApp: React.FC<ContainerSearchAppProps> = ({
+  onCityChange,
+}) => {
+  const lastVisitRef = useRef<LastVisitRef>(null);
+
+  const handleCityChange = (city: string) => {
     onCityChange(city);
     if (lastVisitRef.current) {
       lastVisitRef.current.addCity(city);

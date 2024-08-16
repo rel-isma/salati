@@ -1,10 +1,11 @@
-// import { PropsWithChildren } from "react";
-import searchIcon from "../../assets/weather1.svg";
 import styles from "./Weather.module.css";
 
-// RealFeel
+interface Weather {
+  weather: number;
+  iconUrl: string;
+}
 
-const Weather = ({ weather, iconUrl }) => {
+const Weather: React.FC<Weather> = ({ weather, iconUrl }) => {
   return (
     <div className={styles.WeatherApp}>
       <img src={iconUrl} alt="icon"></img>

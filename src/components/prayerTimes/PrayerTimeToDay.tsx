@@ -10,9 +10,22 @@ import Asr from "../../assets/Asr.svg";
 import Maghrib from "../../assets/Marghib.svg";
 import Isha from "../../assets/Isha.svg";
 
-// PrayerTimes
-// Line
-const PrayerTimeToDay = ({ prayerTime, prayerNow }) => {
+interface PrayerTimeToDayProps {
+  prayerTime: {
+    Fajr: string;
+    Sunrise: string;
+    Dhuhr: string;
+    Asr: string;
+    Maghrib: string;
+    Isha: string;
+  };
+  prayerNow: string; // or a more specific type if needed
+}
+
+const PrayerTimeToDay: React.FC<PrayerTimeToDayProps> = ({
+  prayerTime,
+  prayerNow,
+}) => {
   return (
     <div className={styles.prayertimetoday}>
       <PrayerTime

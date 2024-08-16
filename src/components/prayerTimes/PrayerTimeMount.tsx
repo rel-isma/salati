@@ -5,8 +5,45 @@ import { useState } from "react";
 import styles from "./PrayerTimeMount.module.css";
 import download from "../../assets/download.svg";
 
-const PrayerTimeMount = ({ prayerMount }) => {
-  const [isAnimating, setIsAnimating] = useState(false);
+interface HijriDate {
+  date: string;
+}
+interface GregorianDate {
+  date: string;
+}
+
+interface DateData {
+  gregorian: GregorianDate;
+  hijri: HijriDate;
+}
+
+interface Timings {
+  Fajr: string;
+  Sunrise: string;
+  Dhuhr: string;
+  Asr: string;
+  Maghrib: string;
+  Isha: string;
+}
+
+interface PrayerMountProps {
+  city: string;
+  year: string;
+  monthNumber: string;
+  monthName: string;
+}
+
+interface PrayerTimeMountProps {
+  prayerMount: PrayerMountProps;
+}
+
+interface DayData {
+  date: DateData;
+  timings: Timings;
+}
+
+const PrayerTimeMount: React.FC<PrayerTimeMountProps> = ({ prayerMount }) => {
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
   const generatePDF = async () => {
     setIsAnimating(true);
@@ -14,7 +51,7 @@ const PrayerTimeMount = ({ prayerMount }) => {
 
     try {
       const url = `https://api.aladhan.com/v1/hijriCalendarByCity/${prayerMount.year}/${prayerMount.monthNumber}?city=${prayerMount.city}&country=MA`;
-      const response = await axios.get(url);
+      const response = await axios.get<{ data: DayData[] }>(url);
       const data = response.data.data;
 
       // Initialize the jsPDF object

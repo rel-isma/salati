@@ -1,33 +1,46 @@
-import { useState, useCallback, useMemo, useRef, useEffect } from "react";
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+  useEffect,
+} from "react";
 import styles from "./SearchApp.module.css";
 import searchIcon from "../../assets/search.svg";
 import SuggestionsList from "./SuggestionsList";
 import MoroccanCities from "./moroccanCities";
 
-const SearchApp = ({ onCityChange }) => {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [city, setCity] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const [error, setError] = useState("");
-  const wrapperRef = useRef(null);
+interface SearchAppProps {
+  onCityChange: (city: string) => void;
+}
 
-  const handleInputChange = useCallback((e) => {
-    const value = e.target.value;
-    setCity(value);
-    setError("");
+const SearchApp: React.FC<SearchAppProps> = ({ onCityChange }) => {
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [city, setCity] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [error, setError] = useState<string>("");
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-    if (value) {
-      const filteredCities = MoroccanCities.filter((city) =>
-        city.toLowerCase().startsWith(value.toLowerCase())
-      ).slice(0, 5);
-      setSuggestions(filteredCities);
-    } else {
-      setSuggestions([]);
-    }
-  }, []);
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setCity(value);
+      setError("");
+
+      if (value) {
+        const filteredCities = MoroccanCities.filter((city) =>
+          city.toLowerCase().startsWith(value.toLowerCase())
+        ).slice(0, 5);
+        setSuggestions(filteredCities);
+      } else {
+        setSuggestions([]);
+      }
+    },
+    []
+  );
 
   const handleSuggestionClick = useCallback(
-    (suggestion) => {
+    (suggestion: string) => {
       setCity(suggestion);
       setSuggestions([]);
       setCity("");
@@ -38,7 +51,7 @@ const SearchApp = ({ onCityChange }) => {
   );
 
   const handleKeyDown = useCallback(
-    (event) => {
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
       if (event.key === "Enter") {
         event.preventDefault();
         if (city.trim()) {
@@ -77,8 +90,11 @@ const SearchApp = ({ onCityChange }) => {
 
   // Handle clicks outside of the component
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
         setSuggestions([]);
         setError("");
       }

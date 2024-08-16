@@ -4,9 +4,24 @@ import City from "../City/City";
 import Time from "./Time";
 import RealFeel from "./reafeel";
 import Weather from "./Weather";
-// import Humidity from "./Humidity";
+import React from "react";
 
-const ContainerWeatherApp = ({ weatherData, city, time, iconUrl }) => {
+interface ContainerWeatherAppProps {
+  weatherData: {
+    temperature: number;
+    realFeel: number;
+  };
+  city: string;
+  time: string;
+  iconUrl: string;
+}
+
+const ContainerWeatherApp: React.FC<ContainerWeatherAppProps> = ({
+  weatherData,
+  city,
+  time,
+  iconUrl,
+}) => {
   return (
     <div className={styles.ContainerWeather}>
       <div className={styles.city}>

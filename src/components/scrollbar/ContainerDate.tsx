@@ -5,8 +5,16 @@ import DirLeft from "./DirLeft";
 import DirRight from "./DirRight";
 import dirleftButton from "../../assets/dirleft.svg";
 import DirrightButton from "../../assets/dirright.svg";
+import React from "react";
 
-const ContainerDate = ({
+interface ContainerDateProps {
+  hijri: string;
+  gregorian: string;
+  onHandleChangeDayClick: (direction: string) => void;
+  datePrayerGregorian: string;
+}
+
+const ContainerDate: React.FC<ContainerDateProps> = ({
   hijri,
   gregorian,
   onHandleChangeDayClick,

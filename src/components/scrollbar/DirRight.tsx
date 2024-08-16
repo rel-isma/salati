@@ -1,16 +1,25 @@
-// import { PropsWithChildren } from "react";
 import { useCallback, useState } from "react";
 import styles from "./Dir.module.css";
 import moment from "moment";
 
-const DirRight = ({ dir, onHandleChangeDayClick, datePrayerGregorian }) => {
+interface DirRightProps {
+  dir: string;
+  onHandleChangeDayClick: (date: string) => void;
+  datePrayerGregorian: string;
+}
+
+const DirRight: React.FC<DirRightProps> = ({
+  dir,
+  onHandleChangeDayClick,
+  datePrayerGregorian,
+}) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const getPreviousDayDate = useCallback(() => {
     return moment(datePrayerGregorian, "DD-MM-YYYY")
       .subtract(1, "days")
       .format("DD-MM-YYYY");
-  }, [onHandleChangeDayClick]);
+  }, [datePrayerGregorian]);
 
   const previousDay = getPreviousDayDate();
 

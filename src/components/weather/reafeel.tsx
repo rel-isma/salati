@@ -1,9 +1,11 @@
 // import { PropsWithChildren } from "react";
 import styles from "./RealFeel.module.css";
 
-// RealFeel
+interface RealFeelProps {
+  realFell: number;
+}
 
-const RealFeel = ({ realFell }) => {
+const RealFeel: React.FC<RealFeelProps> = ({ realFell }) => {
   return (
     <div className={styles.RealFeelApp}>
       <p>RealFeel®</p>

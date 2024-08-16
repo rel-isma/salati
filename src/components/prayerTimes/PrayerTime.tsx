@@ -1,6 +1,19 @@
+import React from "react";
 import styles from "./PrayerTime.module.css";
 
-const PrayerTime = ({ prayerNow, iconPryaer, namePrayer, timeprayer }) => {
+interface PrayerTimeProps {
+  prayerNow: string;
+  iconPryaer: string;
+  namePrayer: string;
+  timeprayer: string;
+}
+
+const PrayerTime: React.FC<PrayerTimeProps> = ({
+  prayerNow,
+  iconPryaer,
+  namePrayer,
+  timeprayer,
+}) => {
   const isCurrentPrayer = namePrayer === prayerNow;
 
   return (

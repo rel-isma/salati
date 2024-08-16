@@ -1,4 +1,3 @@
-// import { PropsWithChildren } from "react";
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import moment from "moment";
@@ -10,8 +9,8 @@ import ContainerNextTime from "../closePrayer/ContainerNextTime";
 import ContainerDate from "../scrollbar/ContainerDate";
 import ContainerPrayerTime from "../prayerTimes/ContainerPrayerTime";
 import Quran from "../floor/Quran";
-// import LoadingSpinner from "../LoadingSpinner";
 import ErrorComponent from "../ErrorComponent";
+import LoadingSpinner from "../LoadingSpinner";
 
 interface TimingsData {
   Fajr: string;
@@ -176,12 +175,12 @@ const ContainerApp = () => {
 
     setNowPrayerTime({
       prayerName: nextPrayer.prayerName,
-      prayerTime: timings[nextPrayer.prayerName],
+      prayerTime: timings[nextPrayer.prayerName as keyof TimingsData],
     });
 
     setNextPrayerTime({
       prayerName: nextNextPrayer.prayerName,
-      prayerTime: timings[nextNextPrayer.prayerName],
+      prayerTime: timings[nextNextPrayer.prayerName as keyof TimingsData],
     });
   }, []);
 
@@ -197,27 +196,25 @@ const ContainerApp = () => {
         setTimingsData(timings);
 
         // Set Hijri date
-        const day = data.data.date.hijri.day;
-        const month = data.data.date.hijri.month.en;
-        const year = data.data.date.hijri.year;
-        const formattedHijriDate = `${parseInt(day) + 1} ${month}, ${year}`;
-        setHijriDate(formattedHijriDate);
+        const hijriDate = `${parseInt(data.data.date.hijri.day) + 1} ${
+          data.data.date.hijri.month.en
+        }, ${data.data.date.hijri.year}`;
+        setHijriDate(hijriDate);
 
-        // Set Gregorian date
         setDatePrayerGregorian(data.data.date.gregorian.date);
-        const formattedGregorianDate = `${
+        const gregorianDate = `${
           data.data.date.gregorian.weekday.en
         }, ${parseInt(data.data.date.gregorian.day)} ${
           data.data.date.gregorian.month.en
         } ${data.data.date.gregorian.year}`;
-        setGregorianDate(formattedGregorianDate);
+        setGregorianDate(gregorianDate);
 
         // set prayerMount
         setPrayerMount({
           monthNumber: data.data.date.hijri.month.number,
           monthName: data.data.date.hijri.month.en,
           city: city,
-          year: year,
+          year: data.data.date.hijri.year,
         });
 
         // calculatePrayerTimes(timings);
@@ -288,7 +285,13 @@ const ContainerApp = () => {
       remainingNow: formatDuration(nowRemaining),
       remainingNext: formatDuration(nextRemaining),
     });
-  }, [nowPrayerTime, nextPrayerTime, formatDuration]);
+  }, [
+    nowPrayerTime.prayerTime,
+    nextPrayerTime.prayerTime,
+    formatDuration,
+    calculatePrayerTimes,
+    timingsData,
+  ]);
 
   useEffect(() => {
     const intervalId = setInterval(updateRemainingTime, 1000);
@@ -319,9 +322,9 @@ const ContainerApp = () => {
     );
   }
 
-  // if (isLoading) {
-  //   return <LoadingSpinner />;
-  // }
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <div className={styles.container}>

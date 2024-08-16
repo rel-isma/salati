@@ -1,6 +1,14 @@
-import styles from "./SuggestionsList.module.css"; // Adjust the path according to your project structure
+import React from "react";
+import styles from "./SuggestionsList.module.css";
+interface SuggestionsListProps {
+  suggestions: string[];
+  onSuggestionClick: (suggestion: string) => void;
+}
 
-const SuggestionsList = ({ suggestions, onSuggestionClick }) => {
+const SuggestionsList: React.FC<SuggestionsListProps> = ({
+  suggestions,
+  onSuggestionClick,
+}) => {
   return (
     <ul className={styles.suggestionsList}>
       {suggestions.map((suggestion) => (
