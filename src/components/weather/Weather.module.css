@@ -1,0 +1,59 @@
+.WeatherApp {
+  display: flex;
+  align-items: center;
+}
+
+.WeatherApp h3 {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 40px;
+}
+
+.WeatherApp img {
+  width: 30px;
+  height: 30px;
+}
+
+.WeatherApp span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+@media only screen and (min-width: 320px) {
+  .WeatherApp {
+    margin-top: 10px;
+  }
+  .WeatherApp h3 {
+    margin: 0;
+    margin-left: -3px;
+    font-size: 25px;
+  }
+
+  .WeatherApp img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .WeatherApp span {
+    font-size: 10px;
+    font-weight: 400;
+  }
+}
+
+@media only screen and (min-width: 550px) {
+  .WeatherApp h3 {
+    margin: 0;
+    margin-left: -3px;
+    font-size: 38px;
+  }
+
+  .WeatherApp img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .WeatherApp span {
+    font-size: 15px;
+    font-weight: 400;
+  }
+}

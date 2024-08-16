@@ -1,0 +1,27 @@
+.Dir {
+  background: none;
+  border: none;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out;
+}
+
+.Dir:active {
+  transform: scale(0.9);
+}
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animateClick {
+  animation: clickAnimation 0.3s ease-in-out;
+}

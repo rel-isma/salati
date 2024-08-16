@@ -1,0 +1,9 @@
+.ContainerNowTime {
+  /* margin-top: 10px; */
+  width: 48%;
+  height: 120px;
+  background: linear-gradient(to bottom, #00ca66, #d1fce9, #e7fff4);
+  /* background-color: #ecfdf5; */
+  border: 1px solid #0a5a39;
+  border-radius: 5px;
+}

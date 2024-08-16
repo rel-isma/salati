@@ -1,0 +1,60 @@
+.lastVisits {
+  margin-left: 10px;
+  width: 90%;
+}
+
+.lastvisit {
+  display: flex;
+  margin: 0;
+  font-size: 15px;
+  margin-top: 8px;
+}
+
+.visiting {
+  display: flex;
+  align-items: start;
+  font-size: 10px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
+
+.lastCity {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 4px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.lastCity:hover {
+  background-color: #00ca66;
+}
+
+.firstcity {
+  background-color: #00ca66;
+}
+
+.lastCity.firstcity:hover {
+  display: none; /* This will hide the element when hovered */
+}
+@media only screen and (max-width: 550px) {
+  .lastVisits {
+    width: 90%;
+  }
+  .lastvisit {
+    font-size: 13px;
+    margin-top: 9px;
+  }
+
+  .lastCity {
+    margin-left: 10px;
+    margin-top: -3px;
+    font-size: 6px;
+  }
+
+  .lastCity:nth-child(n + 4) {
+    display: none;
+  }
+}

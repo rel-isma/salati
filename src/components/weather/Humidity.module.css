@@ -1,0 +1,29 @@
+.HumidityApp {
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: -10px;
+}
+
+.HumidityApp p {
+  margin: 0;
+  font-size: 8px;
+}
+.HumidityApp h5 {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 9px;
+}
+
+@media only screen and (min-width: 320px) {
+  .HumidityApp p {
+    font-size: 8px;
+    margin-top: 4px;
+  }
+  .HumidityApp h5 {
+    margin: 0;
+    margin-left: 7px;
+    font-size: 8px;
+  }
+}

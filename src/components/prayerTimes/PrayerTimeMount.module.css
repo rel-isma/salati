@@ -1,0 +1,55 @@
+.prayertimeMount {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 85%;
+  height: 30px;
+  background-color: #007d47;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.prayertimeMount button {
+  /* background: none; */
+  width: 23px;
+  height: 20px;
+  padding: 3px;
+  background-color: #91f7cb;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 2px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.prayertimeMount h5 {
+  margin: 0;
+  font-size: 10px;
+  color: white;
+}
+
+@media only screen and (min-width: 320px) {
+  .prayertimeMount h5 {
+    font-size: 9px;
+  }
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+@keyframes clickAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animateClick {
+  animation: clickAnimation 0.3s ease-in-out;
+}

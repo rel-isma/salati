@@ -1,0 +1,37 @@
+.TimeNow {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  /* background-color: rebeccapurple; */
+}
+
+.TimeNow p {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 200;
+}
+
+.TimeNow h2 {
+  margin: 0;
+  margin-top: -4px;
+}
+
+.TimeNow h3 {
+  margin: 0;
+  font-size: 23px;
+  margin-top: -4px;
+}
+.TimeNow h3 span {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.remainingPrayer {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 23px;
+  font-weight: 300;
+  margin-left: -12px;
+}
