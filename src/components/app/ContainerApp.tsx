@@ -10,11 +10,42 @@ import ContainerNextTime from "../closePrayer/ContainerNextTime";
 import ContainerDate from "../scrollbar/ContainerDate";
 import ContainerPrayerTime from "../prayerTimes/ContainerPrayerTime";
 import Quran from "../floor/Quran";
-import LoadingSpinner from "../LoadingSpinner";
+// import LoadingSpinner from "../LoadingSpinner";
 import ErrorComponent from "../ErrorComponent";
 
+interface TimingsData {
+  Fajr: string;
+  Sunrise: string;
+  Dhuhr: string;
+  Asr: string;
+  Maghrib: string;
+  Isha: string;
+}
+
+interface PrayerTime {
+  prayerName: string;
+  prayerTime: string;
+}
+
+interface TimeRemaining {
+  remainingNow: string;
+  remainingNext: string;
+}
+
+interface WeatherData {
+  realFeel: number;
+  temperature: number;
+}
+
+interface PrayerMount {
+  monthNumber: string;
+  monthName: string;
+  city: string;
+  year: string;
+}
+
 const ContainerApp = () => {
-  const [timingsData, setTimingsData] = useState({
+  const [timingsData, setTimingsData] = useState<TimingsData>({
     Fajr: "05:10",
     Sunrise: "06:47",
     Dhuhr: "13:38",
@@ -22,41 +53,47 @@ const ContainerApp = () => {
     Maghrib: "20:24",
     Isha: "21:44",
   });
-  const [hijriDate, setHijriDate] = useState("");
-  const [gregorianDate, setGregorianDate] = useState("");
-  const [monthPrayer, setMonthPrayer] = useState("");
+  const [hijriDate, setHijriDate] = useState<string>("");
+  const [gregorianDate, setGregorianDate] = useState<string>("");
 
-  const [nowPrayerTime, setNowPrayerTime] = useState({
+  const [nowPrayerTime, setNowPrayerTime] = useState<PrayerTime>({
     prayerName: "Fajr",
     prayerTime: "00:00",
   });
 
-  const [nextPrayerTime, setNextPrayerTime] = useState({
+  const [nextPrayerTime, setNextPrayerTime] = useState<PrayerTime>({
     prayerName: "Fajr",
     prayerTime: "00:00",
   });
 
-  const [timeRemaining, setTimeRemaining] = useState({
+  const [timeRemaining, setTimeRemaining] = useState<TimeRemaining>({
     remainingNow: "- 00:00:00",
     remainingNext: "- 00:00:00",
   });
 
-  const [city, setCity] = useState("Khouribga");
+  const [city, setCity] = useState<string>("Khouribga");
   const country = "MA";
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [weatherData, setWeatherData] = useState({
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [weatherData, setWeatherData] = useState<WeatherData>({
     realFeel: 0,
     temperature: 0,
   });
-  const [datePrayerGregorian, setDatePrayerGregorian] = useState("");
-  const [isNotFound, setIsNotFound] = useState(false);
-  const PRAYER_NAMES = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
-  const [time, setTime] = useState("");
+  const [datePrayerGregorian, setDatePrayerGregorian] = useState<string>("");
+  const [isNotFound, setIsNotFound] = useState<boolean>(false);
+  const PRAYER_NAMES: string[] = [
+    "Fajr",
+    "Sunrise",
+    "Dhuhr",
+    "Asr",
+    "Maghrib",
+    "Isha",
+  ];
+  const [time, setTime] = useState<string>("");
   const apiKey = "0f8ba4e5cfe11e0c3e6fef5bd749686c";
   const countryW = "Morocco";
-  const [iconUrl, setIconUrl] = useState("");
-  const [prayerMount, setPrayerMount] = useState({
+  const [iconUrl, setIconUrl] = useState<string>("");
+  const [prayerMount, setPrayerMount] = useState<PrayerMount>({
     monthNumber: "",
     monthName: "",
     city: "",
@@ -275,10 +312,6 @@ const ContainerApp = () => {
     setIsLoading(true);
     fetchPrayerData(dateDay);
   };
-
-  // if (isLoading || !timingsData) {
-  //   return <LoadingSpinner />;
-  // }
 
   if (error) {
     return (
