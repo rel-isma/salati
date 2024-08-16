@@ -150,7 +150,7 @@ const ContainerApp = () => {
     };
   }, [fetchWeatherData, updateCurrentTime]);
 
-  const calculatePrayerTimes = useCallback((timings: string) => {
+  const calculatePrayerTimes = useCallback((timings: TimingsData) => {
     const now = moment();
 
     const filteredTimings = Object.entries(timings).filter(([prayerName]) =>
@@ -186,7 +186,7 @@ const ContainerApp = () => {
   }, []);
 
   const fetchPrayerData = useCallback(
-    async (Day) => {
+    async (Day: string) => {
       setError(null);
       setIsNotFound(false);
       const url = `http://api.aladhan.com/v1/timingsByCity/${Day}?city=${city}&country=${country}`;
@@ -211,10 +211,6 @@ const ContainerApp = () => {
           data.data.date.gregorian.month.en
         } ${data.data.date.gregorian.year}`;
         setGregorianDate(formattedGregorianDate);
-
-        // Set month prayer
-        const formattedMonthPrayer = `${city} in ${month} ${year}`;
-        setMonthPrayer(formattedMonthPrayer);
 
         // set prayerMount
         setPrayerMount({
