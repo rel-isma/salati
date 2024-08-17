@@ -195,7 +195,6 @@ const ContainerApp = () => {
         const timings = data.data.timings;
         setTimingsData(timings);
 
-        // Set Hijri date
         const hijriDate = `${parseInt(data.data.date.hijri.day) + 1} ${
           data.data.date.hijri.month.en
         }, ${data.data.date.hijri.year}`;
@@ -209,15 +208,12 @@ const ContainerApp = () => {
         } ${data.data.date.gregorian.year}`;
         setGregorianDate(gregorianDate);
 
-        // set prayerMount
         setPrayerMount({
           monthNumber: data.data.date.hijri.month.number,
           monthName: data.data.date.hijri.month.en,
           city: city,
           year: data.data.date.hijri.year,
         });
-
-        // calculatePrayerTimes(timings);
       } catch (error) {
         if (axios.isAxiosError(error) && error.response) {
           if (error.response.status === 404) {
