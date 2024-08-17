@@ -1,6 +1,3 @@
-Sure! Here's a README (RADMI) template for your GitHub repository, tailored to your application:
-
----
 
 # Salati
 
@@ -92,6 +89,28 @@ Contributions are welcome! Please follow these steps:
 4. Push to the branch (`git push origin feature/AmazingFeature`).
 5. Open a pull request.
 
+For your README file, you can include a section that specifies the programming languages and technologies used in the application. Here’s a template you might use:
+
+## Technologies Used
+
+This application is built using a combination of the following technologies:
+
+### Frontend
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A statically typed superset of JavaScript that adds type safety.
+- **CSS Modules**: For modular and scoped styling of React components.
+
+### Backend
+- **Axios**: A promise-based HTTP client for making API requests.
+
+### Libraries
+- **moment.js**: A JavaScript library for parsing, validating, manipulating, and formatting dates.
+- **OpenWeatherMap API**: Provides weather data.
+- **Aladhan API**: Provides prayer timings data.
+
+### Development
+- **ESLint**: A tool for identifying and fixing problems in JavaScript code.
+- **Prettier**: An opinionated code formatter.
 
 ## Contact
 
@@ -99,6 +118,3 @@ Contributions are welcome! Please follow these steps:
 - **Email**: relismaiyly@gmail.com
 - **GitHub**: https://github.com/rel-isma
 
----
-
-Feel free to modify the template to better suit your needs!
