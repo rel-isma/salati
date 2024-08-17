@@ -36,6 +36,14 @@
   background-color: #00ca66;
 }
 
+.novistis p {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  margin-top: -2px;
+  margin-left: 15px;
+}
+
 .lastCity.firstcity:hover {
   display: none; /* This will hide the element when hovered */
 }
@@ -56,5 +64,12 @@
 
   .lastCity:nth-child(n + 4) {
     display: none;
+  }
+  .novistis p {
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    margin-top: -6px;
+    margin-left: 15px;
   }
 }

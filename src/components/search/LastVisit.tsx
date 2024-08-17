@@ -71,7 +71,9 @@ const LastVisit = forwardRef<LastVisitRef, LastVisitProps>(
               </div>
             ))
           ) : (
-            <p>No recent visits</p>
+            <div className={styles.novistis}>
+              <p>No recent visits</p>
+            </div>
           )}
         </div>
       </div>
