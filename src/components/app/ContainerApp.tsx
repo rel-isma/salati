@@ -90,7 +90,7 @@ const ContainerApp = () => {
   ];
   const [time, setTime] = useState<string>("");
   const apiKey = "0f8ba4e5cfe11e0c3e6fef5bd749686c";
-  const countryW = "Morocco";
+  const countryW = "MA";
   const [iconUrl, setIconUrl] = useState<string>("");
   const [prayerMount, setPrayerMount] = useState<PrayerMount>({
     monthNumber: "",
