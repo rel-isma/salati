@@ -149,43 +149,40 @@ const ContainerApp = () => {
     };
   }, [fetchWeatherData, updateCurrentTime]);
 
-  const calculatePrayerTimes = useCallback(
-    (timings: TimingsData) => {
-      const now = moment();
+  const calculatePrayerTimes = useCallback((timings: TimingsData) => {
+    const now = moment();
 
-      const filteredTimings = Object.entries(timings).filter(([prayerName]) =>
-        PRAYER_NAMES.includes(prayerName)
-      );
+    const filteredTimings = Object.entries(timings).filter(([prayerName]) =>
+      PRAYER_NAMES.includes(prayerName)
+    );
 
-      const prayerEntries = filteredTimings.map(([prayerName, time]) => ({
-        prayerName,
-        prayerTime: moment(time, "HH:mm"),
-      }));
+    const prayerEntries = filteredTimings.map(([prayerName, time]) => ({
+      prayerName,
+      prayerTime: moment(time, "HH:mm"),
+    }));
 
-      let nextPrayerIndex = prayerEntries.findIndex(({ prayerTime }) =>
-        now.isBefore(prayerTime)
-      );
+    let nextPrayerIndex = prayerEntries.findIndex(({ prayerTime }) =>
+      now.isBefore(prayerTime)
+    );
 
-      if (nextPrayerIndex === -1) {
-        nextPrayerIndex = prayerEntries.length - 1;
-      }
+    if (nextPrayerIndex === -1) {
+      nextPrayerIndex = prayerEntries.length - 1;
+    }
 
-      const nextPrayer = prayerEntries[nextPrayerIndex];
-      const nextNextPrayerIndex = (nextPrayerIndex + 1) % prayerEntries.length;
-      const nextNextPrayer = prayerEntries[nextNextPrayerIndex];
+    const nextPrayer = prayerEntries[nextPrayerIndex];
+    const nextNextPrayerIndex = (nextPrayerIndex + 1) % prayerEntries.length;
+    const nextNextPrayer = prayerEntries[nextNextPrayerIndex];
 
-      setNowPrayerTime({
-        prayerName: nextPrayer.prayerName,
-        prayerTime: timings[nextPrayer.prayerName as keyof TimingsData],
-      });
+    setNowPrayerTime({
+      prayerName: nextPrayer.prayerName,
+      prayerTime: timings[nextPrayer.prayerName as keyof TimingsData],
+    });
 
-      setNextPrayerTime({
-        prayerName: nextNextPrayer.prayerName,
-        prayerTime: timings[nextNextPrayer.prayerName as keyof TimingsData],
-      });
-    },
-    [PRAYER_NAMES]
-  );
+    setNextPrayerTime({
+      prayerName: nextNextPrayer.prayerName,
+      prayerTime: timings[nextNextPrayer.prayerName as keyof TimingsData],
+    });
+  }, []);
 
   const fetchPrayerData = useCallback(
     async (Day: string) => {
