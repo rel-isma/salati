@@ -100,7 +100,6 @@ const ContainerApp = () => {
   });
 
   const fetchWeatherData = useCallback(async () => {
-    setIsLoading(true);
     setError(null);
     setIsNotFound(false);
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryW}&units=metric&appid=${apiKey}`;
@@ -125,6 +124,7 @@ const ContainerApp = () => {
         } else {
           setError("Failed to fetch prayer data. Please try again later.");
         }
+        setIsLoading(true);
       } else {
         setError("An unexpected error occurred. Please try again later.");
       }
@@ -229,6 +229,7 @@ const ContainerApp = () => {
         } else {
           setError("An unexpected error occurred. Please try again later.");
         }
+        setIsLoading(true);
       } finally {
         setIsLoading(false);
       }
@@ -237,7 +238,6 @@ const ContainerApp = () => {
   );
 
   useEffect(() => {
-    setIsLoading(true);
     const currentDay = moment().format("DD-MM-YYYY");
     fetchPrayerData(currentDay);
   }, [fetchPrayerData]);

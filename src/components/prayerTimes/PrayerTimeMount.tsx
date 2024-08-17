@@ -54,7 +54,6 @@ const PrayerTimeMount: React.FC<PrayerTimeMountProps> = ({ prayerMount }) => {
       const response = await axios.get<{ data: DayData[] }>(url);
       const data = response.data.data;
 
-      // Initialize the jsPDF object
       const doc = new jsPDF();
 
       const removeDiacritics = (str: string) => {
