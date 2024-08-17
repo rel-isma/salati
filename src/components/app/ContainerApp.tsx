@@ -188,7 +188,7 @@ const ContainerApp = () => {
     async (Day: string) => {
       setError(null);
       setIsNotFound(false);
-      const url = `http://api.aladhan.com/v1/timingsByCity/${Day}?city=${city}&country=${country}`;
+      const url = `https://api.aladhan.com/v1/timingsByCity/${Day}?city=${city}&country=${country}`;
       try {
         const response = await axios.get(url);
         const data = response.data;
